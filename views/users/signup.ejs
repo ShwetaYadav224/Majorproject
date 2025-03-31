@@ -1,0 +1,68 @@
+<% layout("/layouts/bioilerplate") %>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <!-- Card Design -->
+      <div class="card shadow border-0">
+        <!-- Card Header -->
+        <div class="card-header text-center bg-primary1 text-dark">
+          <h3 class="mb-0 header-color">Create Your Account</h3>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body p-4">
+          <!-- Form with validation feedback -->
+          <form action="/signup" method="POST" class="needs-validation" novalidate>
+            <!-- Username Field -->
+            <div class="mb-4">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please provide a username.
+              </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="mb-4">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+              <div class="valid-feedback">
+                Perfect! Your email is valid.
+              </div>
+              <div class="invalid-feedback">
+                Please provide a valid email address.
+              </div>
+            </div>
+
+            <!-- Password Field -->
+            <div class="mb-4">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+              <div class="valid-feedback">
+                Password looks good.
+              </div>
+              <div class="invalid-feedback">
+                Please enter a password.
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-primary btn-md py-2 px-4">
+                <i class="bi bi-person-plus"></i> Signup
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- Card Footer -->
+        <div class="card-footer text-center bg-light">
+          <small class="text-muted">Already have an account? <a href="/login" class="text-primary fw-bold">Login</a></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<% layout("/layouts/bioilerplate") %>
+<div class="container my-4">
+  <!-- Heading Section -->
+  <header class="text-center mb-5">
+    <h1 class="listing-page-heading">All Listings</h1>
+  </header>
+  <!-- Create New Listing Button -->
+  <form method="GET" action="/listings/new" class="mb-5 text-center">
+    <button class="btn btn-create-listing btn-lg">
+      <i class="bi bi-plus-circle"></i>
+    </button>
+  </form>
+
+
+  <!-- Listings Grid (1 card per row) -->
+  <div class="row listing-grid-single">
+    <% for (let listing of allListings) { %>
+    <div class="col-12">
+      <a href="/listings/<%= listing._id %>" class="listing-link text-decoration-none">
+        <div class="listing-card">
+          <!-- Left: Image -->
+          <div class="listing-card-img-container">
+            <img src="<%= listing.image.url %>" class="listing-card-img" alt="listing_img">
+          </div>
+
+          <!-- Right: Details -->
+          <div class="listing-card-body">
+            <h5 class="listing-card-title"><%= listing.title %></h5>
+            <p class="listing-card-price">₹<%= listing.price.toLocaleString("en-IN") %>/night</p>
+            <p class="listing-card-description"><%= listing.description %></p>
+            <p class="listing-card-location"><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% } %>
+  </div>
+</div>
