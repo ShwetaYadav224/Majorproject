@@ -59,11 +59,7 @@ app.use((req, res, next) => {
 // MongoDB Connection
 async function main() {
     try {
-        await mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/wonderlust', {
-            user: process.env.DB_USER || 'root',
-            pass: process.env.DB_PASS || 'example',
-            authSource: 'admin',
-        });
+         await mongoose.connect(`${process.env.MONGODB_URI}/${process.env.DB_NAME}`);
         console.log("Database connected successfully");
     } catch (err) {
         console.error("Database connection failed", err);
