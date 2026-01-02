@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV != "production"){
+if (process.env.NODE_ENV != "production") {
     require('dotenv').config();
 }
 const express = require('express');
@@ -7,11 +7,11 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const session = require('express-session');
-const flash = require('connect-flash');
+const flash = require('./utils/flash.js');
 const ExpressError = require("./utils/ExpressError.js");
 const listingRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
-const userRouter= require("./routes/user.js");
+const userRouter = require("./routes/user.js");
 const passport = require('passport');
 const LocalStrategy = require("passport-local").Strategy;
 const User = require('./models/user.js');
@@ -49,7 +49,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-    res.locals.success = req.flash("success");  
+    res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
     next();
@@ -59,7 +59,7 @@ app.use((req, res, next) => {
 // MongoDB Connection
 async function main() {
     try {
-         await mongoose.connect(`${process.env.MONGODB_URI}/${process.env.DB_NAME}`);
+        await mongoose.connect(process.env.MONGODB_URI, { dbName: process.env.DB_NAME });
         console.log("Database connected successfully");
     } catch (err) {
         console.error("Database connection failed", err);
@@ -71,7 +71,7 @@ async function main() {
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
-app.get("/home", (req, res) => {
+app.get("/", (req, res) => {
     res.render("Home/home.ejs");
 });
 

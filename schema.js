@@ -19,12 +19,10 @@ module.exports.listingSchema = Joi.object({
     title: Joi.string()
       .required(), // Field is required
     description: Joi.string().required(), // Field is required
-   
     location: Joi.string().required(), // Field is required
     country: Joi.string().required(), // Field is required
-      price: Joi.number(),
-    
-    image: Joi.allow("", null) 
-      .required(), // Field is required
+    price: Joi.number().required(), // Field is required
+    // Note: image is handled by multer via req.file, not req.body
+    image: Joi.any().optional(),
   }).required(), // The `listing` object itself is required
 }); 
